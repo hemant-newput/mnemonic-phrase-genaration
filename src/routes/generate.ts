@@ -3,10 +3,9 @@ import { GenerateController } from '../controllers/generateController';
 import { response } from '../utils/responseUtil';
 
 const router = Router();
-router.get('/', response(GenerateController.generateMnemobics));
+router.post('/', response(GenerateController.generateMnemobics));
 router.get('/wordlist', response(GenerateController.getMnemonicsKeywords));
-router.get('/manual', response(GenerateController.generateMnemonicsManually));
-
-
+router.post('/manual', response(GenerateController.generateMnemonicsManually));
+router.get('/entropy', response(GenerateController.generateEntropy));
 
 export default router;

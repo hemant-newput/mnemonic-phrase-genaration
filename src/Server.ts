@@ -2,14 +2,16 @@
 import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
-import Generator from "./src/routes/generate"
-import Validator from "./src/routes/validate"
+import Generator from "./routes/generate"
+import Validator from "./routes/validate"
 
 
 const app = express();
 app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }));
+app.set("view engine", "ejs") 
 
+app.use(express.static('assets'))      
 app.use(cors({
     origin: '*',
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -35,9 +37,11 @@ app.get('/v1', (req, res) => {
         license: 'Hemant Shrivastava',
     });
 });
-
-app.use('/v1/generate/', Generator);
-app.use('/v1/validate/', Validator);
+app.use('/home',(req,res)=>{
+    res.render('homepage')
+})
+app.use('/generate/', Generator);
+app.use('/validate/', Validator);
 
 app.all('*', (req, res) => {
     res.json({

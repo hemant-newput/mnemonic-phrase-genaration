@@ -6,7 +6,8 @@ import { BadRequestError } from "../utils/customError";
 export const ValidateController = {
     
     validateMnemonics: async (req: any, res: any) => {
-        const phrase = req.body.mnemonics;
+        console.log(req.body)
+        const phrase = req.body.phrase;
         if (phrase.trim().split(/\s+/g).length >= 12) {
             return await ValidatorService.validateMnemonics(phrase);
         } else {

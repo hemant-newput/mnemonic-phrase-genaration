@@ -5,9 +5,17 @@ import { sha256 } from 'js-sha256';
 export const GeneratorService = {
     generateMnemonics: async (reqData: any) => {
         console.log(`I will generate Mnemonics with ${JSON.stringify(reqData)}`);
+        console.log(reqData)
         bip39.setDefaultWordlist(reqData.language);
-        const mnemonic = bip39.generateMnemonic();
-        return `Generated Phrases are ${mnemonic}`;
+        let mnemonics;
+        while (true) {
+            mnemonics = bip39.generateMnemonic();
+            console.log(mnemonics)
+            if (bip39.validateMnemonic(mnemonics)) {
+                break
+            }
+        }
+        return `Generated Phrases are ${mnemonics}`;
     },
 
     generateMnemonicsWithEntropy: async (reqData: any) => {
@@ -19,8 +27,8 @@ export const GeneratorService = {
         return bip39.wordlists[`${language}`];
     },
 
-    generateManualMnemonics: async (language: string) => {
-        const randomNumber = getEntropy();
+    generateManualMnemonics: async (reqData: any) => {
+        const randomNumber = reqData.entropy || getEntropy();
         const hexadecimal = convertBinaryToHex(randomNumber);
         const hashedValue = hexadecimal && sha256(hexadecimal);
         const checksum = hashedValue && convertHexToBinary(hashedValue[0]);
@@ -28,7 +36,7 @@ export const GeneratorService = {
         const phraseBinaryArray = splitWord(finalValue, 11);
         const words: string[] = [];
         phraseBinaryArray.map((chunk) => {
-            words.push(bip39.wordlists[language][parseInt(chunk, 2) + 1]);
+            words.push(bip39.wordlists[reqData.language][parseInt(chunk, 2) + 1]);
         })
         return words;
     }

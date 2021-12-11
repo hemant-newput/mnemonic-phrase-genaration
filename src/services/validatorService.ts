@@ -1,8 +1,8 @@
 import * as bip39 from 'bip39'
 
 export const ValidatorService = {
-    validateMnemonics : async (reqData: any) => {
-        const validate = bip39.validateMnemonic(reqData.mnemonic);
+    validateMnemonics : async (phrase: any) => {
+        const validate = bip39.validateMnemonic(phrase);
         return `Given Mnemonic is ${validate ? "Correct": "Incorrect"}`;
     },
     getEntropyFromMnemonic: async(reqData:any)=>{

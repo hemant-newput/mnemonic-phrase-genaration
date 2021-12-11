@@ -5,7 +5,7 @@
   "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && nodemon dist/Server.js",
+    "start": "tsc && nodemon dist/src/Server.js",
     "build": "tsc"
   },
   "author": "Hemant Shrivastava",
@@ -14,6 +14,7 @@
     "bip39": "^3.0.4",
     "bitcoinjs-lib": "^6.0.1",
     "cors": "^2.8.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "js-sha256": "^0.9.0",
     "nodemon": "^2.0.15",

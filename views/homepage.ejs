@@ -1,0 +1,46 @@
+<%- include('./partials/header')%>
+
+    <body style="background-color: aliceblue;">
+        <h1 class="d-flex justify-content-center" style="margin-top: 100px; font-family:'Abril-fatface'"><a
+                href="/">Mnemonic Phrase Generation and Validation</a></h1>
+        <div class="d-flex justify-content-center">
+            <img src="/home.png" height="150px" alt="There is supposed to be an icon">
+            <img src="/bird.png" height="150px" style="position: absolute;top: 0px;left: 0px;"
+                alt="There is supposed to be an image here">
+        </div>
+        <div style="margin: 0px auto; padding: 5% 30%">
+            <div>
+                <form name="form1" class="form-class" action="/generate" method="POST">
+                    <input type="number" name="entropy" style="width: 65%; margin-right: 30px;"
+                        placeholder="Using BIP 39 package">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Generate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form1" class="form-class" action="/generate/manual" method="POST">
+                    <input type="number" name="entropy" style="width: 65%; margin-right: 30px;"
+                        placeholder="Enter a random number (128 bit binary)">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Generate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form2" class="form-class" action="/validate" method="POST">
+                    <input type="text" name="phrase" style="width:65%;margin-right: 30px;"
+                        placeholder="Enter your space seperated Mnemonic Phrase">
+                    <button style="width: 25%;" class="btn btn-primary">Click to Validate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <a class="btn btn-success json" style="margin: 20px 50px" href="/generate/wordlist">To View Phrase
+                    list</a>
+                <a class="btn btn-success json" style="margin: 20px" href="/generate/entropy">To Generate Random
+                    Entropy</a>
+            </div>
+        </div>
+        <%- include('./partials/footer')%>
+    </body>
+
+    </html>

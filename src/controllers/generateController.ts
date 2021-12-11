@@ -25,8 +25,11 @@ export const GenerateController = {
     },
     generateMnemonicsManually: async (req: any, res: any) => {
         try {
-            const language = req.query.language || LANGUAGES.DEFAULT_LANGUAGE
-            return await GeneratorService.generateManualMnemonics(language);
+            const reqData = {
+                language: req.query.language || LANGUAGES.DEFAULT_LANGUAGE,
+                entropy: req.query.entropy
+            }
+            return await GeneratorService.generateManualMnemonics(reqData);
         } catch (error) {
             throw new InternalServerError(MESSAGES.MNEMONIC_GENERATION_FAILURE)
         }
