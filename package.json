@@ -1,0 +1,26 @@
+{
+  "name": "mnemonic",
+  "version": "1.0.0",
+  "description": "Express API to generate and verify mnemonic phrases",
+  "main": "Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && nodemon dist/Server.js",
+    "build": "tsc"
+  },
+  "author": "Hemant Shrivastava",
+  "license": "ISC",
+  "dependencies": {
+    "bip39": "^3.0.4",
+    "bitcoinjs-lib": "^6.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13"
+  }
+}
