@@ -1,7 +1,6 @@
 import * as bip39 from 'bip39'
 import { convertBinaryToHex, convertHexToBinary, getEntropy, splitWord } from '../helpers/helper';
-import { sha256 } from 'js-sha256';
-
+import * as crypto from 'crypto'
 export const GeneratorService = {
     generateMnemonics: async (reqData: any) => {
         console.log(`I will generate Mnemonics with ${JSON.stringify(reqData)}`);
@@ -30,7 +29,8 @@ export const GeneratorService = {
     generateManualMnemonics: async (reqData: any) => {
         const randomNumber = reqData.entropy || getEntropy();
         const hexadecimal = convertBinaryToHex(randomNumber);
-        const hashedValue = hexadecimal && sha256(hexadecimal);
+        const buffer = hexadecimal && Buffer.from(hexadecimal.toString(), 'hex')
+        let hashedValue = buffer && crypto.createHash('sha256').update(buffer).digest('hex')
         const checksum = hashedValue && convertHexToBinary(hashedValue[0]);
         const finalValue = (randomNumber + checksum);
         const phraseBinaryArray = splitWord(finalValue, 11);
@@ -38,6 +38,8 @@ export const GeneratorService = {
         phraseBinaryArray.map((chunk) => {
             words.push(bip39.wordlists[reqData.language][parseInt(chunk, 2) + 1]);
         })
-        return words;
+        return {words, checksum};
     }
 }
+
+// ** always use buffer to move from datatype to datatype

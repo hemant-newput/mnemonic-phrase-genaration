@@ -1,0 +1,59 @@
+<%- include('./partials/header')%>
+
+    <body style="background-color: aliceblue;">
+        <h1 class="d-flex justify-content-center" style="margin-top: 60px; font-family:'Abril-fatface'"><a
+                href="/">Bitcoin Address Generation</a></h1>
+        <div class="d-flex justify-content-center">
+            <img src="/address.png" height="150px" alt="There is supposed to be an icon">
+            <img src="/bird.png" height="150px" style="position: absolute;top: 0px;left: 0px;"
+                alt="There is supposed to be an image here">
+        </div>
+        <div style="margin: 0px auto; padding: 5% 30%">
+            <div>
+                <form name="form1" class="form-class" action="/address" method="POST">
+                    <input type="text" disabled name="entropy" style="width: 65%; margin-right: 30px;"
+                        placeholder="Random Bitcoin Address">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Generate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form2" class="form-class" action="/address/segwit" method="POST">
+                    <input type="text" name="phrase" disabled style="width:65%;margin-right: 30px;"
+                        placeholder="SegWit Address">
+                    <button style="width: 25%;" class="btn btn-primary">Click to Validate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form1" class="form-class" action="/address/lite" method="POST">
+                    <input type="text" name="entropy" disabled style="width: 65%; margin-right: 30px;"
+                        placeholder="LiteCoin Address">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Generate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form3" class="form-class" action="/address/testnet" method="POST">
+                    <input type="text" name="entropy" disabled style="width: 65%; margin-right: 30px;"
+                        placeholder="Testnet Address">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Validate</button>
+                </form>
+            </div>
+            <br>
+            <div>
+                <form name="form4" class="form-class" action="/address/info" method="POST">
+                    <input type="text" name="address" style="width: 65%; margin-right: 30px;"
+                        placeholder="Enter Address">
+                    <button style="width: 25%;"class="btn btn-primary">Click to Fetch</button>
+                </form>
+            </div>
+            <br>
+            <div style="margin-top:40px;text-align: center;">
+                <a class="btn btn-warning json" href="/home">Mnemonic Generation</a>
+            </div>
+        </div>
+        <%- include('./partials/footer')%>
+    </body>
+
+    </html>

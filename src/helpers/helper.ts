@@ -38,3 +38,14 @@ export const getEntropy = () => {
     }
     return value
 }
+
+export const fixedLengthValue = (binary: string, length: number) => {
+    const zero = "0"
+    let zeroString ="";
+    if (binary.length < length) {
+        for(let i=0;i< length - binary.length ;i++){
+            zeroString+=zero
+        }
+    }
+    return zeroString+binary
+}

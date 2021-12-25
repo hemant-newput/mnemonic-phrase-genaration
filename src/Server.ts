@@ -4,7 +4,7 @@ import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 import Generator from "./routes/generate"
 import Validator from "./routes/validate"
-
+import Address from "./routes/address"
 
 const app = express();
 app.use(bodyParser.json({ limit: '5mb' }));
@@ -40,8 +40,12 @@ app.get('/v1', (req, res) => {
 app.use('/home',(req,res)=>{
     res.render('homepage')
 })
+app.use('/addresspage',(req,res)=>{
+    res.render('addresspage')
+})
 app.use('/generate/', Generator);
 app.use('/validate/', Validator);
+app.use('/address/', Address);
 
 app.all('*', (req, res) => {
     res.json({

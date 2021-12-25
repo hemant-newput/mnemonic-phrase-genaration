@@ -4,7 +4,6 @@ import { ValidatorService } from "../services/validatorService";
 import { BadRequestError } from "../utils/customError";
 
 export const ValidateController = {
-    
     validateMnemonics: async (req: any, res: any) => {
         console.log(req.body)
         const phrase = req.body.phrase;
@@ -13,6 +12,10 @@ export const ValidateController = {
         } else {
             throw new BadRequestError(MESSAGES.INVALID_PHRASE_LENGTH);
         }
+    },
+    validateManualMenemonics: async (req: any, res: any) => {
+        console.log(req.body)
+        return await ValidatorService.validateManualMenemonics(req.body);
     },
 
 }
